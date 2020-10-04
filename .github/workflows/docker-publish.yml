@@ -34,13 +34,13 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         logout: true
 
-    # - name: Login to GitHub Container Registry
-    #   uses: docker/login-action@v1
-    #   with:
-    #     registry: ghcr.io
-    #     username: ${{ GITHUB.ACTOR }}
-    #     password: ${{ secrets.GHCRIO_PAT }}
-    #     logout: true
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ GITHUB.ACTOR }}
+        password: ${{ secrets.GHCRIO_PAT }}
+        logout: true
       
     - name: Publish to Docker Hub
       id: docker_build
@@ -49,10 +49,12 @@ jobs:
         push: true
         tags: |
           mmuffins/hueadm:latest
-          mmuffins/hueadm:${{ steps.prep.outputs.labelref }}
+          mmuffins/hueadm:${{ steps.prep.outputs.nodePackageVer }}
+          ghcr.io/mmuffins/hueadm:latest
+          ghcr.io/mmuffins/hueadm:${{ steps.prep.outputs.nodePackageVer }}
         context: ${{ GITHUB.WORKSPACE }}
         file: hueadm/Dockerfile
-        platforms: linux/amd64, linux/arm/v7
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
         labels: |
           org.opencontainers.image.title=${{ github.event.repository.name }}
           org.opencontainers.image.description=${{ github.event.repository.description }}
@@ -61,6 +63,7 @@ jobs:
           org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.created=${{ steps.prep.outputs.created }}
           org.opencontainers.image.version=${{ steps.prep.outputs.nodePackageVer }}
+          org.opencontainers.image.licenses='MIT'
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
