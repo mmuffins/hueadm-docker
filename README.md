@@ -1,4 +1,4 @@
-# hueadm-docker
+# hueadm-docker - Phillips Hue Admin CLI Utility
 The docker version of [hueadm](https://github.com/bahamas10/hueadm).
 
 Installation
