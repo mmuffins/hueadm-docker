@@ -28,6 +28,6 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: ghcr.io
-        username: ${{ GITHUB_ACTOR }}
+        username: ${{ GITHUB.ACTOR }}
         password: ${{ secrets.GHCRIO_PAT }}
         logout: true
