@@ -3,14 +3,13 @@ name: docker-push
 on:
   workflow_dispatch:
 
-runs-on: ubuntu-latest
-
 env:
  imageName: hueadm 
 
 jobs:
 
   build:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Build Image
