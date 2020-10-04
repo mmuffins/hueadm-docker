@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Image
-      run: |
-        docker build '${{ GITHUB.WORKSPACE }}' --file hueadm/Dockerfile --tag ${{ env.imageName }}:$(date +%s)
+#    - name: Build Image
+#      run: |
+#        docker build '${{ GITHUB.WORKSPACE }}' --file hueadm/Dockerfile --tag ${{ env.imageName }}:$(date +%s)
       
     - name: Set Data
       id: prep
@@ -37,6 +37,7 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
+        push: false
         repository: mmuffins/hueadm
         tags: |
           mmuffins/hueadm:latest
@@ -44,7 +45,6 @@ jobs:
         path: ${{ GITHUB.WORKSPACE }}
         dockerfile: hueadm/Dockerfile
         platforms: linux/amd64
-        cache_froms: node:8-alpine
         labels: |
           org.opencontainers.image.title=${{ github.event.repository.name }}
           org.opencontainers.image.description=${{ github.event.repository.description }}
