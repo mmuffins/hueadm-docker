@@ -14,4 +14,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build Image
       run: |
-        docker build '${{ GITHUB.WORKSPACE }}/hueadm' --file Dockerfile --tag ${{ env.imageName }}:$(date +%s)
+        docker build '${{ GITHUB.WORKSPACE }}' --file hueadm/Dockerfile --tag ${{ env.imageName }}:$(date +%s)
