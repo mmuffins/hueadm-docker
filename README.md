@@ -45,4 +45,4 @@ To simplify the usage of the image, an alias can be set
     ... snipped ...
 
 #### Further Examples
-For more usage examples and full setup guide see [the hueadm repository](https://github.com/bahamas10/hueadm).
+For more usage examples and full setup guide see the [hueadm repository](https://github.com/bahamas10/hueadm).
