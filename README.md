@@ -21,6 +21,7 @@ Once the image has been pulled, all functions of the cli are avalable by passing
 
 #### Using a Config File
 It is possible to provide a config file by mounting it as volume
+
     $ vim ~/.hueadm.json
     $ cat ~/.hueadm.json
     {
@@ -35,6 +36,7 @@ It is possible to provide a config file by mounting it as volume
 
 #### Using aliases
 To simplify the usage of the image, an alias can be set
+
     $ alias hueadm="docker run --rm -H 10.0.1.80 -U f28jfl3gtltQw4r4gKLEtVFsfJcBGE87A1RaAXgt"
     $ hueadm lights
     ID  NAME                       STATUS  BRIGHTNESS  REACHABLE
