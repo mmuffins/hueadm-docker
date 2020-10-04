@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Set Data
+    - name: Set Docker Labels
       id: prep
       run: |
         echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
@@ -33,6 +33,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }} 
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         logout: true
+
+    # - name: Login to GitHub Container Registry
+    #   uses: docker/login-action@v1
+    #   with:
+    #     registry: ghcr.io
+    #     username: ${{ GITHUB.ACTOR }}
+    #     password: ${{ secrets.GHCRIO_PAT }}
+    #     logout: true
       
     - name: Publish to Docker Hub
       id: docker_build
@@ -56,11 +64,3 @@ jobs:
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
-
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ GITHUB.ACTOR }}
-        password: ${{ secrets.GHCRIO_PAT }}
-        logout: true
