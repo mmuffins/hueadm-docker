@@ -22,5 +22,6 @@ jobs:
       # uses: docker/login-action@34d5f75b0d6d0d22f06d83acf2fa1b144409ec83
       uses: docker/login-action@v1.4.1
       with:
-        password: 
+        username: ${{ secrets.DOCKERHUB_USERNAME }} 
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
         logout: true
