@@ -41,7 +41,7 @@ jobs:
           mmuffins/hueadm:${{ steps.prep.outputs.labelref }}
         context: ${{ GITHUB.WORKSPACE }}
         file: hueadm/Dockerfile
-        platforms: linux/amd64, linux/arm64, x86-64
+        platforms: linux/amd64, x86-64
         labels: |
           org.opencontainers.image.title=${{ github.event.repository.name }}
           org.opencontainers.image.description=${{ github.event.repository.description }}
